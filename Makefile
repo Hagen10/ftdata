@@ -1,0 +1,19 @@
+
+
+.PHONY: build
+build:
+	docker build \
+		--file docker/sql.Dockerfile \
+		--build-arg BAK_URL="https://oda.ft.dk/odapublish/oda.bak" \
+		--build-arg BAK_USER="ODAwebpublish" \
+		--build-arg BAK_PASS="b56ff26a-c19b-4322-a3c4-614de155781d" \
+		--build-arg DB_NAME="Danish_Norwegian_CI_AS" \
+		-t mssql-restored .
+
+.PHONY: run
+run: build
+	docker run -d \
+		-e SA_PASSWORD="YourStrong!Passw0rd" \
+		-p 1433:1433 \
+		--name sql-restored \
+		mssql-restored
