@@ -1,5 +1,7 @@
 # Use the official Microsoft SQL Server image
-FROM mcr.microsoft.com/mssql/server:2022-latest
+FROM mcr.microsoft.com/azure-sql-edge:latest
+
+USER root
 
 # Set environment variables
 ENV ACCEPT_EULA=Y \
@@ -10,9 +12,24 @@ ENV ACCEPT_EULA=Y \
 ARG BAK_URL
 ARG BAK_USER
 ARG BAK_PASS
-ARG DB_NAME=MyDatabase
+ARG DB_NAME=ODA
 
-USER root
+# add sqlcmd from https://github.com/microsoft/go-sqlcmd
+# we add this to /opt/mssql-tools/bin which completely overrides the
+# sqlcmd from the base image. Read up on why we do this here:
+# https://github.com/microsoft/go-sqlcmd/discussions/501#discussion-6088877
+WORKDIR /opt/mssql-tools/bin
+ENV GOSQLCMD_VERSION=v1.5.0
+ARG TARGETPLATFORM
+RUN case ${TARGETPLATFORM} in \
+    "linux/amd64")  GOSQLCMD_ARCH=amd64 ;; \
+    "linux/arm64")  GOSQLCMD_ARCH=arm64 ;; \
+    *) echo "Unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
+    esac \
+ && wget https://github.com/microsoft/go-sqlcmd/releases/download/${GOSQLCMD_VERSION}/sqlcmd-${GOSQLCMD_VERSION}-linux-${GOSQLCMD_ARCH}.tar.bz2 \
+ && tar -xjf sqlcmd-${GOSQLCMD_VERSION}-linux-${GOSQLCMD_ARCH}.tar.bz2
+
+WORKDIR /app
 
 # Create directories for backup and restore scripts
 RUN mkdir -p /var/opt/mssql/backup /docker-entrypoint-initdb.d
