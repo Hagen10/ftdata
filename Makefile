@@ -5,7 +5,6 @@ build:
 		--build-arg BAK_URL="https://oda.ft.dk/odapublish/oda.bak" \
 		--build-arg BAK_USER="ODAwebpublish" \
 		--build-arg BAK_PASS="b56ff26a-c19b-4322-a3c4-614de155781d" \
-		--build-arg DB_NAME="ODA" \
 		-t oda-restored .
 
 .PHONY: run

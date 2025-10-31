@@ -1,4 +1,4 @@
-# Use the official Microsoft SQL Server image
+# Use the azure sql edge because it supports arm. the mssql images do not.
 FROM mcr.microsoft.com/azure-sql-edge:latest
 
 USER root
@@ -12,7 +12,6 @@ ENV ACCEPT_EULA=Y \
 ARG BAK_URL
 ARG BAK_USER
 ARG BAK_PASS
-ARG DB_NAME=ODA
 
 # add sqlcmd from https://github.com/microsoft/go-sqlcmd
 # we add this to /opt/mssql-tools/bin which completely overrides the
