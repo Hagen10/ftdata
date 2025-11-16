@@ -18,3 +18,22 @@ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong!Passw0rd' \
 
 docker cp oda.bak mssql:/var/opt/mssql/backup
 
+
+Example:
+
+B 177 (borger forslag) about weapon's trade.
+
+Finding specific vote that lead to rejecting the proposal (I assume you only need the sagstrinid really):
+SELECT * FROM dbo.Afstemning
+WHERE nummer = 512 AND sagstrinid = 265952
+ORDER BY opdateringsdato DESC
+
+Findin the Sag
+SELECT * FROM dbo.Sag
+WHERE titelkort LIKE '%Om at Danmark skal stoppe%'
+
+Finding all Borgerforslag sager
+SELECT * FROM dbo.Sag
+WHERE nummer LIKE 'B %'
+ORDER BY nummernumerisk + 0 DESC
+
