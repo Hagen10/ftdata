@@ -12,7 +12,7 @@ STATS=10
 
 docker commands:
 
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong!Passw0rd' \
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=DefaultStrong!Passw0rd' \
   -p 1433:1433 --name mssql -m 3G -d mcr.microsoft.com/azure-sql-edge
 
 

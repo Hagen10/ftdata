@@ -178,3 +178,4 @@ GROUP BY dbo.Aktør.navn
 ORDER BY "fravær" ASC, "Total" DESC
 
 SELECT * FROM dbo.Aktør
+

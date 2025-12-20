@@ -10,7 +10,7 @@ build:
 .PHONY: run
 run: build
 	docker run -d \
-		-e SA_PASSWORD="YourStrong!Passw0rd" \
+		-e SA_PASSWORD="DefaultStrong!Passw0rd" \
 		-p 1433:1433 \
 		--name oda-restored \
 		oda-restored

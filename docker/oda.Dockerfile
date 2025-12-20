@@ -6,7 +6,7 @@ USER root
 # Set environment variables
 ENV ACCEPT_EULA=Y \
     MSSQL_PID=Developer \
-    SA_PASSWORD=YourStrong!Passw0rd
+    SA_PASSWORD=DefaultStrong!Passw0rd
 
 # Allow arguments for build-time customization
 ARG BAK_URL
