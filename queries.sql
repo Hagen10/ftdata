@@ -161,6 +161,8 @@ AND dbo.EmneordSag.emneordid = 84443
 -- Also figure out how to extract party information (this could possibly be done elsewhere like in the service that queries the database using regex)
 -- Make a list showing people who vote the most, are the most absent
 -- Do men vote more than women? The biografi contains the sex of the person.. If only we could retrieve it somehow
+-- which people have voted against the party they belong to and in what cases did they do it?
+-- Candidate test ideas: Show the people/parties that you align with the most and the people/parties that you disagree with the most
 
 -- List of all voters, sorted by least absence and most votes given
 SELECT
