@@ -8,7 +8,11 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     alias(libs.plugins.kotlin.jvm)
+    kotlin("plugin.spring") version "2.3.0"
+    id("org.springframework.boot") version "4.0.1"
+    id("io.spring.dependency-management") version "1.1.3"
 
+    id("com.github.ben-manes.versions") version "0.53.0"
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
@@ -29,6 +33,14 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.jetbrains.exposed:exposed-core:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.45.0")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:13.3.0.jre11-preview")
+    implementation("com.zaxxer:HikariCP:7.0.2")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -40,7 +52,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
+    mainClass = "com.example.AppKt"
 }
 
 tasks.named<Test>("test") {
