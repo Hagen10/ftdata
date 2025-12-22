@@ -1,24 +1,39 @@
 package com.example.db
 
 import com.example.config.dbQuery
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Service
 
-data class PolDTO(val id: Int, val typeid: Int, val fornavn: String?, val efternavn: String?)
+data class PolDTO(val id: Int, val typeId: Int, val firstName: String?, val lastName: String?)
+data class VotesDTO(val titleShort: String?, val resume: String?, val votingConclusion: String?, val vote: String)
 
 @Service
 class PolService {
 
     fun getAllPols(): List<PolDTO> = dbQuery {
         Pols
-            .slice(Pols.id, Pols.typeid, Pols.fornavn, Pols.efternavn)
+            .slice(Pols.id, Pols.typeId, Pols.firstName, Pols.lastName)
             .selectAll().map {
             PolDTO(
                 id = it[Pols.id],
-                typeid = it[Pols.typeid],
-                fornavn = it[Pols.fornavn],
-                efternavn = it[Pols.efternavn]
+                typeId = it[Pols.typeId],
+                firstName = it[Pols.firstName],
+                lastName = it[Pols.lastName]
             )
         }
+    }
+
+    fun getPolVotes(polId: Int): List<VotesDTO> = dbQuery {
+        (Case innerJoin CaseStage innerJoin Voting innerJoin Vote innerJoin Pols innerJoin VoteType)
+            .slice(Case.titleShort, Case.resume, Case.votingConclusion, VoteType.voteType)
+            .select {Pols.id eq polId}
+            .map {
+                VotesDTO(
+                    titleShort = it[Case.titleShort],
+                    resume = it[Case.resume],
+                    votingConclusion = it[Case.votingConclusion],
+                    vote = it[VoteType.voteType]
+                )
+            }
     }
 }
