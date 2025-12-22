@@ -4,7 +4,7 @@ import org.jetbrains.exposed.sql.Table
 
 object Pols : Table("ODA.dbo.aktør") {
     val id = integer("id")
-    val typeId = integer ("typeid")
+    val typeId = integer("typeid")
     val firstName = varchar("fornavn", 100)
     val lastName = varchar("efternavn", 100)
 

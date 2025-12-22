@@ -8,9 +8,9 @@ class App
 
 class App2 {
     val greeting: String
-    get() {
-        return "Hello World!"
-    }
+        get() {
+            return "Hello World!"
+        }
 }
 
 fun main(args: Array<String>) {

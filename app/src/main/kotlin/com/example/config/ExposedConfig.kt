@@ -1,18 +1,16 @@
 package com.example.config
 
-import jakarta.annotation.PostConstruct
-import javax.sql.DataSource
-import org.jetbrains.exposed.sql.Database
-import org.springframework.context.annotation.Configuration
-import org.slf4j.LoggerFactory
-
 import com.zaxxer.hikari.HikariDataSource
+import jakarta.annotation.PostConstruct
+import org.jetbrains.exposed.sql.Database
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.Configuration
+import javax.sql.DataSource
 
 @Configuration
 class ExposedConfig(
-    private val dataSource: DataSource
+    private val dataSource: DataSource,
 ) {
-
     private val log = LoggerFactory.getLogger(javaClass)
 
     @PostConstruct

@@ -14,3 +14,7 @@ run: build
 		-p 1433:1433 \
 		--name oda-restored \
 		oda-restored
+
+.PHONY: format
+format:
+	ktlint --format
