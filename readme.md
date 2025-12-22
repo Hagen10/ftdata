@@ -40,8 +40,12 @@ ORDER BY nummernumerisk + 0 DESC
 # To do
 - What could be nice is to somehow compare the newest downloaded database with the previous one to ensure that data isn't all of a sudden lost.
 - authentication with perhaps Oauth2
+- dockerize kotlin application
+- harden security wise. Should the communication between frontend and backend be mtls? Likely. Also, the application.yml file should be fed the password instead of hardcoding. Applies anywhere where the password is appearing at present.
+- create a new repo for the frontend written in Typescript
+- testing?
 
-# commands+
+# commands
 - Check dependencies: ´gradle dependencyUpdates´
 
 # Notes
