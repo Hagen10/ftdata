@@ -48,3 +48,11 @@ replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,java
 .vscode/settings.json
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+bin
+.fake
