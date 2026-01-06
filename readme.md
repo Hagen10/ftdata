@@ -44,6 +44,8 @@ ORDER BY nummernumerisk + 0 DESC
 - harden security wise. Should the communication between frontend and backend be mtls? Likely. Also, the application.yml file should be fed the password instead of hardcoding. Applies anywhere where the password is appearing at present.
 - create a new repo for the frontend written in Typescript
 - testing?
+- configure CORS on both sides I suppose.
+- maybe rename the project, so it's not called com.example....
 
 # commands
 - Check dependencies: ´gradle dependencyUpdates´

@@ -56,3 +56,5 @@ replay_pid*
 build
 bin
 .fake
+
+.kotlin/
