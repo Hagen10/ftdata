@@ -99,6 +99,8 @@ ORDER BY votes DESC
 SELECT * FROM dbo.Aktør
 WHERE dbo.Aktør.fornavn LIKE '%Sigurd%'
 
+SELECT * FROM dbo.AktørType
+
 -- The amount of times that Sigurd voted (not including being absent)
 SELECT dbo.Aktør.navn, count(*) AS votes FROM dbo.Aktør
 INNER JOIN dbo.Stemme ON dbo.Aktør.id = dbo.Stemme.aktørid
@@ -137,7 +139,7 @@ INNER JOIN dbo.Aktør ON dbo.Stemme.aktørid = dbo.Aktør.id
 WHERE dbo.Aktør.id = 20359
 
 -- Query med stemmetype og færre kolonner
-SELECT dbo.Sag.titel, dbo.Sag.titelkort, dbo.Sag.resume, dbo.Sag.afstemningskonklusion, dbo.Aktør.navn, dbo.Stemmetype.[type] FROM dbo.Sag
+SELECT dbo.Afstemning.id, dbo.Sag.titel, dbo.Sag.titelkort, dbo.Sag.resume, dbo.Sag.afstemningskonklusion, dbo.Aktør.navn, dbo.Stemmetype.[type] FROM dbo.Sag
 INNER JOIN dbo.Sagstrin ON dbo.Sag.id = dbo.Sagstrin.sagid
 INNER JOIN dbo.Afstemning ON dbo.Sagstrin.id = dbo.Afstemning.sagstrinid
 INNER JOIN dbo.Stemme ON dbo.Afstemning.id = dbo.Stemme.afstemningid
@@ -177,5 +179,6 @@ INNER JOIN dbo.Stemme ON dbo.Aktør.id = dbo.Stemme.aktørid
 GROUP BY dbo.Aktør.navn
 ORDER BY "fravær" ASC, "Total" DESC
 
-SELECT * FROM dbo.Aktør
+SELECT * FROM dbo.Afstemning
+WHERE nummer = 533
 

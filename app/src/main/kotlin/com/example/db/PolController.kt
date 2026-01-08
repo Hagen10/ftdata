@@ -13,8 +13,13 @@ class PolController(
     @GetMapping("/politicians")
     fun getAllPols(): List<PolDTO> = PolService.getAllPols()
 
-    @GetMapping("/politicians/{id}")
-    fun getPol(
+    @GetMapping("/politicianInfo/{id}")
+    fun getPolInfo(
         @PathVariable id: Int,
-    ): List<VotesDTO> = PolService.getPolVotes(id)
+    ): PolDTO? = PolService.getPolInfo(id)
+
+    @GetMapping("/politicianVotes/{id}")
+    fun getPolVotes(
+        @PathVariable id: Int,
+    ): List<VoteDTO> = PolService.getPolVotes(id)
 }

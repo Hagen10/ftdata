@@ -37,6 +37,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:0.45.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-java-time:0.45.0")
     implementation("com.microsoft.sqlserver:mssql-jdbc:13.3.0.jre11-preview")
     implementation("com.zaxxer:HikariCP:7.0.2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
