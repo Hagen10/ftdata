@@ -53,7 +53,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.example.AppKt"
+    mainClass = "com.hagen10.AppKt"
 }
 
 tasks.named<Test>("test") {

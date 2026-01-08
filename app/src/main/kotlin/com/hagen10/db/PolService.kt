@@ -1,6 +1,6 @@
-package com.example.db
+package com.hagen10.db
 
-import com.example.config.dbQuery
+import com.hagen10.config.dbQuery
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.SortOrder

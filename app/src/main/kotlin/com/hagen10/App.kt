@@ -1,4 +1,4 @@
-package com.example
+package com.hagen10
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

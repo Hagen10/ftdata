@@ -8,7 +8,7 @@ spring:
       maximum-pool-size: 10
 
 server:
-  port: 10000
+  port: 8080
 
 logging:
   level:

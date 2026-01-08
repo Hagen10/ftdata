@@ -1,4 +1,4 @@
-package com.example.config
+package com.hagen10.config
 
 import com.zaxxer.hikari.HikariDataSource
 import jakarta.annotation.PostConstruct
