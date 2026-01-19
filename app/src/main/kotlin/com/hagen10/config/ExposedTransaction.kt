@@ -1,4 +1,4 @@
-package com.example.config
+package com.hagen10.config
 
 import org.jetbrains.exposed.sql.transactions.transaction
 

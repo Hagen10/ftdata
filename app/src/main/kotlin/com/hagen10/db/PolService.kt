@@ -1,9 +1,9 @@
-package com.example.db
+package com.hagen10.db
 
-import com.example.config.dbQuery
+import com.hagen10.config.dbQuery
+import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.SortOrder
 import org.springframework.stereotype.Service
 
 data class PolDTO(
@@ -52,8 +52,7 @@ class PolService {
                         firstName = it[Pols.firstName],
                         lastName = it[Pols.lastName],
                     )
-                }
-                .singleOrNull()
+                }.singleOrNull()
         }
 
     fun getPolVotes(polId: Int): List<VoteDTO> =
