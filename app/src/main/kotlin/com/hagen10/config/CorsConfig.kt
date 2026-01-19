@@ -10,7 +10,7 @@ class CorsConfig : WebMvcConfigurer {
         registry
             .addMapping("/**")
             .allowedOrigins(
-                "http://localhost:4200", // dev
+                "http://localhost:4000", // dev
                 "https://app.hagen10.com", // prod (future)
             ).allowedMethods("GET", "OPTIONS")
             .allowedHeaders("*")

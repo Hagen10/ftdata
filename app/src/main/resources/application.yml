@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=ODA;Encrypt=True;trustServerCertificate=True;Authentication=SqlPassword
     username: sa
-    password: YourStrong!Passw0rd
+    password: DefaultStrong!Passw0rd
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       maximum-pool-size: 10
