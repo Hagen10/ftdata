@@ -11,7 +11,7 @@ class CorsConfig : WebMvcConfigurer {
             .addMapping("/**")
             .allowedOrigins(
                 "http://localhost:4200", // dev
-                "https://app.hagen10.com", // prod (future)
+                "http://ftweb:4200", // docker
             ).allowedMethods("GET", "OPTIONS")
             .allowedHeaders("*")
             .maxAge(3600)
