@@ -10,9 +10,8 @@ class CorsConfig : WebMvcConfigurer {
         registry
             .addMapping("/**")
             .allowedOrigins(
-                "http://localhost:4000", // dev
-                "http://ftweb:4000", // docker
-                "https://app.hagen10.com", // prod (future)
+                "http://localhost:4200", // dev
+                "http://ftweb:4200", // docker
             ).allowedMethods("GET", "OPTIONS")
             .allowedHeaders("*")
             .maxAge(3600)
