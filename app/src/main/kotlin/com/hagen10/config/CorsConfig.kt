@@ -11,6 +11,7 @@ class CorsConfig : WebMvcConfigurer {
             .addMapping("/**")
             .allowedOrigins(
                 "http://localhost:4000", // dev
+                "http://ftweb:4000", // docker
                 "https://app.hagen10.com", // prod (future)
             ).allowedMethods("GET", "OPTIONS")
             .allowedHeaders("*")
