@@ -20,6 +20,7 @@ data class VoteDTO(
     val conclusion: String?,
     val vote: String,
     val timestamp: String?,
+    val voteResult: Boolean,
 )
 
 @Service
@@ -58,7 +59,7 @@ class PolService {
     fun getPolVotes(polId: Int): List<VoteDTO> =
         dbQuery {
             (Case innerJoin CaseStage innerJoin Voting innerJoin Vote innerJoin Pols innerJoin VoteType)
-                .slice(Voting.id, Voting.timestamp, Case.titleShort, Case.resume, Case.conclusion, VoteType.voteType)
+                .slice(Voting.id, Voting.voteResult, Voting.timestamp, Case.titleShort, Case.resume, Case.conclusion, VoteType.voteType)
                 .select { Pols.id eq polId }
                 .orderBy(Voting.timestamp to SortOrder.DESC)
                 .map {
@@ -67,6 +68,7 @@ class PolService {
                         titleShort = it[Case.titleShort],
                         resume = it[Case.resume],
                         conclusion = it[Case.conclusion],
+                        voteResult = it[Voting.voteResult],
                         vote = it[VoteType.voteType],
                         timestamp = it[Voting.timestamp].toString(),
                     )

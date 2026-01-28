@@ -28,14 +28,17 @@ object CaseStage : Table("ODA.dbo.sagstrin") {
     override val primaryKey = PrimaryKey(id)
 }
 
+// This is for the voting session, not sure if there is a better name?
 object Voting : Table("ODA.dbo.afstemning") {
     val id = integer("id")
     val caseStageId = integer("sagstrinid").references(CaseStage.id)
     val timestamp = timestamp("opdateringsdato")
+    val voteResult = bool("vedtaget")
 
     override val primaryKey = PrimaryKey(id)
 }
 
+// This is each vote that has been cast by a politician
 object Vote : Table("ODA.dbo.stemme") {
     val id = integer("id")
     val votingId = integer("afstemningid").references(Voting.id)
