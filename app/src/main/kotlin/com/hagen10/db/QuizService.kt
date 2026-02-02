@@ -13,6 +13,11 @@ data class PromptDTO(
     val resume: String?,
 )
 
+data class CaseVoteDTO(
+    val personId: Int,
+    val voteType: String?,
+)
+
 @Service
 class QuizService {
     fun getPrompts(): List<PromptDTO> =
@@ -30,37 +35,16 @@ class QuizService {
                 }
         }
 
-    fun getPersonInfo(personId: Int): PersonDTO? =
+    fun getCaseVotes(caseId: Int): List<CaseVoteDTO> =
         dbQuery {
-            Person
-                .slice(Person.id, Person.typeId, Person.firstName, Person.lastName)
-                .select { Person.id eq personId }
-                .mapNotNull {
-                    PersonDTO(
-                        id = it[Person.id],
-                        typeId = it[Person.typeId],
-                        firstName = it[Person.firstName],
-                        lastName = it[Person.lastName],
+            (Vote innerJoin VoteSession innerJoin CaseStage innerJoin VoteType)
+                .slice(Vote.personId, VoteType.voteType)
+                .select { CaseStage.id eq caseId }
+                .map {
+                    CaseVoteDTO(
+                        personId = it[Vote.id],
+                        voteType = it[VoteType.voteType],
                     )
-                }.singleOrNull()
+                }
         }
-
-    // fun getPersonVotes(personId: Int): List<VoteInfoDTO> =
-    //     dbQuery {
-    //         (Case innerJoin CaseStage innerJoin VoteSession innerJoin Vote innerJoin Person innerJoin VoteType)
-    //             .slice(VoteSession.id, VoteSession.voteResult, VoteSession.timestamp, Case.titleShort, Case.resume, Case.conclusion, VoteType.voteType)
-    //             .select { Person.id eq personId }
-    //             .orderBy(VoteSession.timestamp to SortOrder.DESC)
-    //             .map {
-    //                 VoteInfoDTO(
-    //                     id = it[VoteSession.id],
-    //                     titleShort = it[Case.titleShort],
-    //                     resume = it[Case.resume],
-    //                     conclusion = it[Case.conclusion],
-    //                     voteResult = it[VoteSession.voteResult],
-    //                     vote = it[VoteType.voteType],
-    //                     timestamp = it[VoteSession.timestamp].toString(),
-    //                 )
-    //             }
-    //     }
 }
