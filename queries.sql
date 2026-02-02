@@ -213,3 +213,10 @@ WHERE dbo.Aktør.id = 20359
 -- might be nice to have later for when we want to filter by year
 SELECT * FROM dbo.Periode
 WHERE dbo.Periode.type = 'samling'
+
+-- Debugging getAllPoliticianVotes with the example from readme.md
+SELECT dbo.Stemme.aktørid, dbo.Stemmetype.type FROM dbo.Stemme
+INNER JOIN dbo.Afstemning ON dbo.Stemme.afstemningid = dbo.Afstemning.id
+INNER JOIN dbo.Sagstrin ON dbo.Afstemning.sagstrinid = dbo.Sagstrin.id
+INNER JOIN dbo.Stemmetype ON dbo.Stemme.typeid = dbo.Stemmetype.id
+WHERE dbo.Sagstrin.sagid IN (75724, 78379, 77413, 78735, 77414, 78863, 84990, 85022, 86509, 86904)

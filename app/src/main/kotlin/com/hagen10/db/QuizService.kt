@@ -15,30 +15,24 @@ data class PromptDTO(
 
 data class UserAnswerDTO(
     val caseId: Int,
-    val vote: String
+    val vote: String,
 )
 
-data class PersonResultDTO(
-    val firstName: String?,
-    val lastName: String?,
-    val percentage: String?,
-)
-
-data class CaseVoteDTO(
+data class PoliticianScoreDTO(
     val personId: Int,
-    val voteType: String?,
+    val score: Int,
 )
 
 @Service
 class QuizService {
     fun getPrompts(): List<PromptDTO> =
         dbQuery {
-            (Case innerJoin CaseTopic)
-                .slice(Case.id, Case.title, Case.titleShort, Case.resume)
+            (Case innerJoin CaseTopic innerJoin CaseStage)
+                .slice(CaseStage.caseId, Case.title, Case.titleShort, Case.resume)
                 .select { CaseTopic.caseTopicId eq 84443 } // 84443 = Borgerforslag
                 .map {
                     PromptDTO(
-                        id = it[Case.id],
+                        id = it[CaseStage.caseId],
                         title = it[Case.title],
                         titleShort = it[Case.titleShort],
                         resume = it[Case.resume],
@@ -46,16 +40,18 @@ class QuizService {
                 }
         }
 
-    fun getCaseVotes(caseId: Int): List<CaseVoteDTO> =
+    fun getAllPoliticianVotes(caseIds: List<Int>): Map<Int, Map<Int, String>> =
         dbQuery {
             (Vote innerJoin VoteSession innerJoin CaseStage innerJoin VoteType)
-                .slice(Vote.personId, VoteType.voteType)
-                .select { CaseStage.id eq caseId }
-                .map {
-                    CaseVoteDTO(
-                        personId = it[Vote.id],
-                        voteType = it[VoteType.voteType],
-                    )
+                .slice(CaseStage.caseId, Vote.personId, VoteType.voteType)
+                .select { CaseStage.caseId inList caseIds }
+                .groupBy { it[Vote.personId] }
+                .mapValues { (_, rows) -> 
+                    rows.associate { row ->
+                        val caseId = row[CaseStage.caseId]
+                        // Creating a map with caseId as key and the politician vote as value
+                        caseId to row[VoteType.voteType]
+                    }
                 }
         }
 }

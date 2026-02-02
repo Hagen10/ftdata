@@ -6,34 +6,26 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.concurrent.CopyOnWriteArrayList
+import org.slf4j.LoggerFactory
 
 @RestController
 @RequestMapping("/api")
 class QuizController(
     private val QuizService: QuizService,
+    private val ScoringService: ScoringService
 ) {
-    // Thread-safe in-memory store
-    private val results = CopyOnWriteArrayList<PersonResultDTO>()
+    private val log = LoggerFactory.getLogger(javaClass)
 
     @GetMapping("/quiz")
     fun startQuiz(): List<PromptDTO> = QuizService.getPrompts()
 
-    @PostMapping("/quiz/answer")
-    fun processAnswer(
-        @RequestBody request: UserAnswerDTO,
-    ): ResponseEntity<Void> {
-        //PoliticianService.getPersonInfo(id)
-
-        return ResponseEntity.ok().build()
-    }
 
     @PostMapping("/quiz/finish")
     fun finishQuiz(
-        @RequestBody request: UserAnswerDTO,
-    ): List<PersonResultDTO> {
-        //PoliticianService.getPersonInfo(id)
+        @RequestBody request: List<UserAnswerDTO>,
+    ): List<PoliticianScoreDTO> {
+        log.info("Received finish quiz request: $request")
 
-        return results
+        return ScoringService.calculateScores(request)
     }
 }
