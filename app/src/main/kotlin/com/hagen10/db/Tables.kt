@@ -23,7 +23,7 @@ object Period : Table("ODA.dbo.periode") {
 
 object Case : Table("ODA.dbo.sag") {
     val id = integer("id")
-    val title = varchar("title", 500)
+    val title = varchar("titel", 500)
     val titleShort = varchar("titelkort", 500)
     val resume = varchar("resume", 500)
     val conclusion = varchar("afstemningskonklusion", 500)

@@ -13,6 +13,17 @@ data class PromptDTO(
     val resume: String?,
 )
 
+data class UserAnswerDTO(
+    val caseId: Int,
+    val vote: String
+)
+
+data class PersonResultDTO(
+    val firstName: String?,
+    val lastName: String?,
+    val percentage: String?,
+)
+
 data class CaseVoteDTO(
     val personId: Int,
     val voteType: String?,
@@ -22,9 +33,9 @@ data class CaseVoteDTO(
 class QuizService {
     fun getPrompts(): List<PromptDTO> =
         dbQuery {
-            (Case innerJoin Period)
-                .slice(Case.id, Case.title, Case.titleShort, Case.resume, Period.id)
-                .select { Period.id eq 84443 } // 84443 = Borgerforslag
+            (Case innerJoin CaseTopic)
+                .slice(Case.id, Case.title, Case.titleShort, Case.resume)
+                .select { CaseTopic.caseTopicId eq 84443 } // 84443 = Borgerforslag
                 .map {
                     PromptDTO(
                         id = it[Case.id],

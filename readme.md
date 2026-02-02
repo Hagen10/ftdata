@@ -13,3 +13,10 @@ example of logging:
         //     dataSource.username,
         //     dataSource.maximumPoolSize
         // )
+
+
+Testing post api:
+curl -i -X POST http://localhost:8080/api/quiz/answer -H "Content-Type: application/json" -d '{"caseId":75724,"vote":"For"}'
+
+Finishing quiz at the same time:
+curl -i -X POST http://localhost:8080/api/quiz/finish -H "Content-Type: application/json" -d '{"caseId":75724,"vote":"For"}'
