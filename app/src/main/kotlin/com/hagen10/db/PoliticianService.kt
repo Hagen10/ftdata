@@ -13,7 +13,7 @@ data class PersonDTO(
     val lastName: String?,
 )
 
-data class VoteInfoDTO(
+data class PersonVoteDTO(
     val id: Int,
     val titleShort: String?,
     val resume: String?,
@@ -63,14 +63,14 @@ class PoliticianService {
                 }.singleOrNull()
         }
 
-    fun getPersonVotes(personId: Int): List<VoteInfoDTO> =
+    fun getPersonVotes(personId: Int): List<PersonVoteDTO> =
         dbQuery {
             (Case innerJoin CaseStage innerJoin VoteSession innerJoin Vote innerJoin Person innerJoin VoteType)
                 .slice(VoteSession.id, VoteSession.voteResult, VoteSession.timestamp, Case.titleShort, Case.resume, Case.conclusion, VoteType.voteType)
                 .select { Person.id eq personId }
                 .orderBy(VoteSession.timestamp to SortOrder.DESC)
                 .map {
-                    VoteInfoDTO(
+                    PersonVoteDTO(
                         id = it[VoteSession.id],
                         titleShort = it[Case.titleShort],
                         resume = it[Case.resume],

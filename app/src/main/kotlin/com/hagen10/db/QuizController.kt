@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api")
-class PoliticianController(
+class QuizController(
     private val PoliticianService: PoliticianService,
 ) {
     @GetMapping("/politicians")

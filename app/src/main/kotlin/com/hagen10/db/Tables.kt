@@ -12,12 +12,22 @@ object Person : Table("ODA.dbo.aktør") {
     override val primaryKey = PrimaryKey(id)
 }
 
+object Period : Table("ODA.dbo.periode") {
+    val id = integer("id")
+    val startDate = varchar("startdato", 25)
+    val endDate = varchar("slutdato", 25)
+    val title = varchar("titel", 25)
+
+    override val primaryKey = PrimaryKey(id)
+}
+
 object Case : Table("ODA.dbo.sag") {
     val id = integer("id")
+    val title = varchar("title", 500)
     val titleShort = varchar("titelkort", 500)
     val resume = varchar("resume", 500)
     val conclusion = varchar("afstemningskonklusion", 500)
-    val period = integer("periodeid")
+    val period = integer("periodeid").references(Period.id)
 
     override val primaryKey = PrimaryKey(id)
 }
@@ -32,7 +42,7 @@ object CaseStage : Table("ODA.dbo.sagstrin") {
 object CaseTopic : Table("ODA.dbo.emneordsag") {
     val id = integer("id")
     val caseTopicId = integer("emneordid")
-    val caseId = integer("sagid")
+    val caseId = integer("sagid").references(Case.id)
 
     override val primaryKey = PrimaryKey(id)
 }
@@ -64,11 +74,3 @@ object VoteType : Table("ODA.dbo.stemmetype") {
     override val primaryKey = PrimaryKey(id)
 }
 
-object Period : Table("ODA.dbo.periode") {
-    val id = integer("id")
-    val startDate = varchar("startdato", 25)
-    val endDate = varchar("slutdato", 25)
-    val title = varchar("titel", 25)
-
-    override val primaryKey = PrimaryKey(id)
-}
