@@ -20,7 +20,7 @@ data class UserAnswerDTO(
 
 data class PoliticianScoreDTO(
     val personId: Int,
-    val score: Int,
+    val score: Double,
 )
 
 @Service

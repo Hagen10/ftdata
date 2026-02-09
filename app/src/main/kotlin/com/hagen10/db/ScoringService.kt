@@ -15,9 +15,13 @@ class ScoringService(
     fun calculateScores(userVotes: List<UserAnswerDTO>): List<PoliticianScoreDTO> {
         val caseIds = userVotes.map { it.caseId }
 
+        var caseCount = caseIds.size
+        // Avoiding division with zero
+        if (caseCount == 0) caseCount = 1
+
         val politicianVotes = QuizService.getAllPoliticianVotes(caseIds)
 
-        val scores = mutableMapOf<Int, Int>()
+        val scores = mutableMapOf<Int, Double>()
 
         for ((politicianId, votesBySession) in politicianVotes) {
             var score = 0
@@ -28,8 +32,8 @@ class ScoringService(
 
                 score += score(userVote.vote, politicianVote)
             }
-
-            scores[politicianId] = score
+            // score / caseCount is multiplied with 1000 to turn it into percent and time it by 10 which is part of rounding to one decimal.
+            scores[politicianId] = kotlin.math.round(score.toDouble() / caseCount * 1000) / 10
         }
 
         return scores.map { (personId, score) -> PoliticianScoreDTO(personId = personId, score = score)}
