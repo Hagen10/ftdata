@@ -27,12 +27,12 @@ data class PoliticianScoreDTO(
 class QuizService {
     fun getPrompts(): List<PromptDTO> =
         dbQuery {
-            (Case innerJoin CaseTopic innerJoin CaseStage)
-                .slice(CaseStage.caseId, Case.title, Case.titleShort, Case.resume)
+            (Case innerJoin CaseTopic)
+                .slice(Case.id, Case.title, Case.titleShort, Case.resume)
                 .select { CaseTopic.caseTopicId eq 84443 } // 84443 = Borgerforslag
                 .map {
                     PromptDTO(
-                        id = it[CaseStage.caseId],
+                        id = it[Case.id],
                         title = it[Case.title],
                         titleShort = it[Case.titleShort],
                         resume = it[Case.resume],
