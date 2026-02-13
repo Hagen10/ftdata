@@ -182,3 +182,41 @@ ORDER BY "fravær" ASC, "Total" DESC
 SELECT * FROM dbo.Afstemning
 WHERE nummer = 533
 
+--- Beginning work on candidate test/quiz in the app
+-- list of cases that have the borgerforslag topic
+SELECT * FROM dbo.EmneordSag
+where emneordid = 84443
+
+-- list of all borger forslag that has been through parliament
+SELECT dbo.Sag.id, dbo.Sag.titel, dbo.Sag.titelkort, dbo.Sag.resume FROM dbo.Sag
+INNER JOIN dbo.EmneordSag ON dbo.Sag.id = dbo.EmneordSag.sagid
+WHERE dbo.EmneordSag.emneordid = 84443
+
+-- once we have a specific voting session id (id in dbo.Sag) we can find all the votes that were cast and from whom
+-- example below uses voting session 75724 (Forslag til folketingsbeslutning om at afskaffe uddannelsesloftet)
+SELECT dbo.Stemme.aktørid, dbo.Stemme.typeid FROM dbo.Stemme
+INNER JOIN dbo.Afstemning ON dbo.Stemme.afstemningid = dbo.Afstemning.id
+INNER JOIN dbo.Sagstrin ON dbo.Afstemning.sagstrinid = dbo.Sagstrin.id
+WHERE dbo.Sagstrin.sagid = 75724
+
+-- same example as above but instead of vote typeid we have the vote string (for, imod, hverken eller, fravær)
+SELECT dbo.Stemme.aktørid, dbo.Stemmetype.type FROM dbo.Stemme
+INNER JOIN dbo.Afstemning ON dbo.Stemme.afstemningid = dbo.Afstemning.id
+INNER JOIN dbo.Sagstrin ON dbo.Afstemning.sagstrinid = dbo.Sagstrin.id
+INNER JOIN dbo.Stemmetype ON dbo.Stemme.typeid = dbo.Stemmetype.id
+WHERE dbo.Sagstrin.sagid = 75724
+
+-- from there you can just pull the name from aktør to get the name of the politician (id 20359 used as an example)
+SELECT dbo.Aktør.navn, dbo.Aktør.fornavn, dbo.Aktør.efternavn FROM dbo.Aktør
+WHERE dbo.Aktør.id = 20359
+
+-- might be nice to have later for when we want to filter by year
+SELECT * FROM dbo.Periode
+WHERE dbo.Periode.type = 'samling'
+
+-- Debugging getAllPoliticianVotes with the example from readme.md
+SELECT dbo.Stemme.aktørid, dbo.Stemmetype.type FROM dbo.Stemme
+INNER JOIN dbo.Afstemning ON dbo.Stemme.afstemningid = dbo.Afstemning.id
+INNER JOIN dbo.Sagstrin ON dbo.Afstemning.sagstrinid = dbo.Sagstrin.id
+INNER JOIN dbo.Stemmetype ON dbo.Stemme.typeid = dbo.Stemmetype.id
+WHERE dbo.Sagstrin.sagid IN (75724, 78379, 77413, 78735, 77414, 78863, 84990, 85022, 86509, 86904)

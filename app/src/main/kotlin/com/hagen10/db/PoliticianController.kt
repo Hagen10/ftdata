@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api")
-class PolController(
-    private val PolService: PolService,
+class PoliticianController(
+    private val PoliticianService: PoliticianService,
 ) {
     @GetMapping("/politicians")
-    fun getAllPols(): List<PolDTO> = PolService.getAllPols()
+    fun getAllPeople(): List<PersonDTO> = PoliticianService.getAllPeople()
 
     @GetMapping("/politicianInfo/{id}")
-    fun getPolInfo(
+    fun getPersonInfo(
         @PathVariable id: Int,
-    ): PolDTO? = PolService.getPolInfo(id)
+    ): PersonDTO? = PoliticianService.getPersonInfo(id)
 
     @GetMapping("/politicianVotes/{id}")
-    fun getPolVotes(
+    fun getPersonVotes(
         @PathVariable id: Int,
-    ): List<VoteDTO> = PolService.getPolVotes(id)
+    ): List<PersonVoteDTO> = PoliticianService.getPersonVotes(id)
 }
