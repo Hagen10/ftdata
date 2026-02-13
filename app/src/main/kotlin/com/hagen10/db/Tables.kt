@@ -73,4 +73,3 @@ object VoteType : Table("ODA.dbo.stemmetype") {
 
     override val primaryKey = PrimaryKey(id)
 }
-

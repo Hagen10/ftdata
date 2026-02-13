@@ -64,27 +64,38 @@ class PoliticianService {
         }
 
     fun getPeopleByIds(personIds: List<Int>): Map<Int, PersonDTO> =
-        if (personIds.isEmpty()) emptyMap()
-        else dbQuery {
-            Person
-                .slice(Person.id, Person.typeId, Person.firstName, Person.lastName)
-                .select { Person.id inList personIds }
-                .associate { row ->
-                    val id = row[Person.id]
-                    id to PersonDTO(
-                        id = id,
-                        typeId = row[Person.typeId],
-                        firstName = row[Person.firstName],
-                        lastName = row[Person.lastName],
-                    )
-                }
+        if (personIds.isEmpty()) {
+            emptyMap()
+        } else {
+            dbQuery {
+                Person
+                    .slice(Person.id, Person.typeId, Person.firstName, Person.lastName)
+                    .select { Person.id inList personIds }
+                    .associate { row ->
+                        val id = row[Person.id]
+                        id to
+                            PersonDTO(
+                                id = id,
+                                typeId = row[Person.typeId],
+                                firstName = row[Person.firstName],
+                                lastName = row[Person.lastName],
+                            )
+                    }
+            }
         }
 
     fun getPersonVotes(personId: Int): List<PersonVoteDTO> =
         dbQuery {
             (Case innerJoin CaseStage innerJoin VoteSession innerJoin Vote innerJoin Person innerJoin VoteType)
-                .slice(VoteSession.id, VoteSession.voteResult, VoteSession.timestamp, Case.titleShort, Case.resume, Case.conclusion, VoteType.voteType)
-                .select { Person.id eq personId }
+                .slice(
+                    VoteSession.id,
+                    VoteSession.voteResult,
+                    VoteSession.timestamp,
+                    Case.titleShort,
+                    Case.resume,
+                    Case.conclusion,
+                    VoteType.voteType,
+                ).select { Person.id eq personId }
                 .orderBy(VoteSession.timestamp to SortOrder.DESC)
                 .map {
                     PersonVoteDTO(

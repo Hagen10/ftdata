@@ -48,7 +48,7 @@ class QuizService {
                 .slice(CaseStage.caseId, Vote.personId, VoteType.voteType)
                 .select { CaseStage.caseId inList caseIds }
                 .groupBy { it[Vote.personId] }
-                .mapValues { (_, rows) -> 
+                .mapValues { (_, rows) ->
                     rows.associate { row ->
                         val caseId = row[CaseStage.caseId]
                         // Creating a map with caseId as key and the politician vote as value

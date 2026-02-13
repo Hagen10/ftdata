@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service
 @Service
 class ScoringService(
     private val QuizService: QuizService,
-    private val PoliticianService: PoliticianService
+    private val PoliticianService: PoliticianService,
 ) {
     // A match (e.g. both votes for) gives a "1" any other scenario (including the politician being absent) will give 0
     fun score(
         userVote: String,
-        politicianVote: String
+        politicianVote: String,
     ): Int = if (userVote == politicianVote) 1 else 0
 
     fun calculateScores(userVotes: List<UserAnswerDTO>): List<PoliticianScoreDTO> {
@@ -28,8 +28,9 @@ class ScoringService(
             var score = 0
 
             for (userVote in userVotes) {
-                val politicianVote = votesBySession[userVote.caseId]
-                    ?: continue // politician didn't vote, so go to next vote session
+                val politicianVote =
+                    votesBySession[userVote.caseId]
+                        ?: continue // politician didn't vote, so go to next vote session
 
                 score += score(userVote.vote, politicianVote)
             }
@@ -39,14 +40,15 @@ class ScoringService(
 
         val people = PoliticianService.getPeopleByIds(scores.keys.toList())
 
-        return scores.map { (personId, score) ->
-            val person = people[personId]
-            PoliticianScoreDTO(
-                personId = personId,
-                firstName = person?.firstName ?: "",
-                lastName = person?.lastName ?: "",
-                score = score
-            )
-        }.sortedByDescending { it.score }
+        return scores
+            .map { (personId, score) ->
+                val person = people[personId]
+                PoliticianScoreDTO(
+                    personId = personId,
+                    firstName = person?.firstName ?: "",
+                    lastName = person?.lastName ?: "",
+                    score = score,
+                )
+            }.sortedByDescending { it.score }
     }
 }
