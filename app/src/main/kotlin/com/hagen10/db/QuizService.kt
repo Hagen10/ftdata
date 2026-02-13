@@ -20,6 +20,8 @@ data class UserAnswerDTO(
 
 data class PoliticianScoreDTO(
     val personId: Int,
+    val firstName: String,
+    val lastName: String,
     val score: Double,
 )
 

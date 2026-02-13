@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScoringService(
-    private val QuizService: QuizService
+    private val QuizService: QuizService,
+    private val PoliticianService: PoliticianService
 ) {
     // A match (e.g. both votes for) gives a "1" any other scenario (including the politician being absent) will give 0
     fun score(
@@ -36,7 +37,16 @@ class ScoringService(
             scores[politicianId] = kotlin.math.round(score.toDouble() / caseCount * 1000) / 10
         }
 
-        return scores.map { (personId, score) -> PoliticianScoreDTO(personId = personId, score = score)}
-                     .sortedByDescending { it.score }
+        val people = PoliticianService.getPeopleByIds(scores.keys.toList())
+
+        return scores.map { (personId, score) ->
+            val person = people[personId]
+            PoliticianScoreDTO(
+                personId = personId,
+                firstName = person?.firstName ?: "",
+                lastName = person?.lastName ?: "",
+                score = score
+            )
+        }.sortedByDescending { it.score }
     }
 }
