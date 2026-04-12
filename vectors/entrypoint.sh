@@ -21,15 +21,15 @@ fi
 sleep 3
 
 # Index test data
-curl http://localhost:8983/solr/vector_test/update?commit=true \
-  -H "Content-Type: application/json" -d '
-[
-  {"id":"1","title":"Red shoes","embedding":[1.0,0.0,0.0,0.0]},
-  {"id":"2","title":"Blue shoes","embedding":[0.9,0.1,0.0,0.0]},
-  {"id":"3","title":"Laptop computer","embedding":[0.0,1.0,0.0,0.0]},
-  {"id":"4","title":"Gaming laptop","embedding":[0.0,0.9,0.1,0.0]},
-  {"id":"5","title":"Banana fruit","embedding":[0.0,0.0,1.0,0.0]}
-]'
+# curl http://localhost:8983/solr/vector_test/update?commit=true \
+#   -H "Content-Type: application/json" -d '
+# [
+#   {"id":"1","title":"Red shoes","embedding":[1.0,0.0,0.0,0.0]},
+#   {"id":"2","title":"Blue shoes","embedding":[0.9,0.1,0.0,0.0]},
+#   {"id":"3","title":"Laptop computer","embedding":[0.0,1.0,0.0,0.0]},
+#   {"id":"4","title":"Gaming laptop","embedding":[0.0,0.9,0.1,0.0]},
+#   {"id":"5","title":"Banana fruit","embedding":[0.0,0.0,1.0,0.0]}
+# ]'
 
 echo "Starting Solr in foreground..."
 

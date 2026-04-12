@@ -226,4 +226,4 @@ SELECT dbo.Dokument.titel, dbo.Dokument.spørgsmålstitel, dbo.Dokument.dato, db
 INNER JOIN dbo.Fil on dbo.Dokument.id = dbo.Fil.dokumentid
 WHERE typeid = 17
 -- typeid 17 indicates an answer document, so we filter for those only. 
--- Questions might not have answers, so we could include questions to look into what kind of questions are ignored/skipped.
+-- Questions might not have answers, so we could include a query for questions to look into what kind of questions are ignored/skipped.

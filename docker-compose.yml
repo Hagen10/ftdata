@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  # oda-db:
+  #   build:
+  #     dockerfile: docker/oda.Dockerfile
+  #     args:
+  #       BAK_URL: "https://oda.ft.dk/odapublish/oda.bak"
+  #       BAK_USER: "ODAwebpublish"
+  #       BAK_PASS: "b56ff26a-c19b-4322-a3c4-614de155781d"
+  #   container_name: oda-db
+  #   environment:
+  #     SA_PASSWORD: "DefaultStrong!Passw0rd"
+  #   ports:
+  #     - "1433:1433"
+  #   healthcheck:
+  #     test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "DefaultStrong!Passw0rd" -d ODA -Q "SELECT 1" || exit 1
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 10
+  #     start_period: 60s
+
+  solr:
+    build:
+      context: ./vectors
+      dockerfile: docker/solr.Dockerfile
+    ports:
+      - "8983:8983"
+    command:
+      - solr-precreate
+      - vector_test
+      - /opt/solr/server/solr/configsets/vector_config
+
+  vectorapi:
+    build:
+      context: ./vectors
+      dockerfile: docker/vectorapi.Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      SOLR_URL: "http://solr:8983/solr/vector_test/query"
+    depends_on:
+      - solr
+    
+  indexer:
+    build:
+      context: ./vectors
+      dockerfile: docker/indexer.Dockerfile
+    depends_on:
+      - solr
