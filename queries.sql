@@ -220,3 +220,10 @@ INNER JOIN dbo.Afstemning ON dbo.Stemme.afstemningid = dbo.Afstemning.id
 INNER JOIN dbo.Sagstrin ON dbo.Afstemning.sagstrinid = dbo.Sagstrin.id
 INNER JOIN dbo.Stemmetype ON dbo.Stemme.typeid = dbo.Stemmetype.id
 WHERE dbo.Sagstrin.sagid IN (75724, 78379, 77413, 78735, 77414, 78863, 84990, 85022, 86509, 86904)
+
+-- Query to get all the answers found in the file link (pdf format) to paragraph 20 questions, udvalgsspørgsmål or samrådsspørgsmål
+SELECT dbo.Dokument.titel, dbo.Dokument.spørgsmålstitel, dbo.Dokument.dato, dbo.Fil.filurl FROM dbo.Dokument
+INNER JOIN dbo.Fil on dbo.Dokument.id = dbo.Fil.dokumentid
+WHERE typeid = 17
+-- typeid 17 indicates an answer document, so we filter for those only. 
+-- Questions might not have answers, so we could include a query for questions to look into what kind of questions are ignored/skipped.
