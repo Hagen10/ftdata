@@ -9,10 +9,10 @@ USER root
 RUN cp -r /opt/solr/server/solr/configsets/_default /opt/solr/server/solr/configsets/vector_config
 
 # Overwrite ONLY schema
-COPY config/managed-schema /opt/solr/server/solr/configsets/vector_config/conf/managed-schema
+COPY vectors/solr/config/managed-schema /opt/solr/server/solr/configsets/vector_config/conf/managed-schema
 
 # Copy init script
-COPY entrypoint.sh /entrypoint.sh
+COPY vectors/solr/entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh
 
 USER solr

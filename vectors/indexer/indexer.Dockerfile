@@ -4,6 +4,6 @@ WORKDIR /app
 
 RUN pip install sentence-transformers requests
 
-COPY index.py .
+COPY vectors/indexer/index.py .
 
 CMD ["python", "index.py"]

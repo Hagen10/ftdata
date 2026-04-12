@@ -1,9 +1,9 @@
 *
-!docker/
+!docker
 !gradle
 !gradlew
 !settings.gradle.kts
 !gradle.properties
 !app/build.gradle.kts
-!app/src/
-!vectors/config/
+!app/src
+!vectors
