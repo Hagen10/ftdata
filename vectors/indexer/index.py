@@ -6,8 +6,8 @@ import spacy
 from xml.etree import ElementTree as ET
 from sentence_transformers import SentenceTransformer
 
-SOLR_UPDATE_URL = "http://solr:8983/solr/vector_test/update?commit=true"
-SOLR_PING_URL   = "http://solr:8983/solr/vector_test/admin/ping"
+SOLR_UPDATE_URL = os.getenv("SOLR_UPDATE_URL", "http://solr:8983/solr/vector_test/update?commit=true")
+SOLR_PING_URL   = os.getenv("SOLR_PING_URL",   "http://solr:8983/solr/vector_test/admin/ping")
 DATA_DIR        = os.getenv("DATA_DIR", "/data")
 BATCH_SIZE      = 50   # documents per Solr POST
 MAX_TOKENS      = 400  # leave headroom below the 512-token model limit
