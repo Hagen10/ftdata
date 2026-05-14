@@ -26,10 +26,8 @@ services:
       dockerfile: vectors/solr/solr.Dockerfile
     ports:
       - "8983:8983"
-    command:
-      - solr-precreate
-      - vector_test
-      - /opt/solr/server/solr/configsets/vector_config
+    volumes:
+      - solr_data:/var/solr/data
 
   api:
     build:
@@ -46,5 +44,12 @@ services:
     build:
       context: .
       dockerfile: vectors/indexer/indexer.Dockerfile
+    volumes:
+      - ../_data:/data:ro
+    environment:
+      DATA_DIR: /data
     depends_on:
       - solr
+
+volumes:
+  solr_data:
