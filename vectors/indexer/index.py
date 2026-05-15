@@ -14,6 +14,13 @@ MAX_TOKENS      = 400  # leave headroom below the 512-token model limit
 OVERLAP_SENTS   = 2    # sentences to carry over into the next chunk
 MODEL_NAME      = "paraphrase-multilingual-MiniLM-L12-v2"
 
+BANNED_TEXT = {
+    "",
+    "Ordføreren.",
+    "Værsgo.",
+    "Spørgeren."
+}
+
 # Load Danish sentence splitter (download: python -m spacy download da_core_news_sm)
 try:
     nlp = spacy.load("da_core_news_sm", disable=["ner", "tagger", "parser", "lemmatizer"])
@@ -109,7 +116,8 @@ def parse_meeting_file(path: str) -> list[dict]:
                         text_parts.append(chunk)
                 text = " ".join(text_parts).strip()
 
-                if not text:
+                normalized = text.lower()
+                if not text or normalized in {t.lower() for t in BANNED_TEXT}:
                     continue
 
                 # Split long segments into overlapping chunks
