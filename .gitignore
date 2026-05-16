@@ -1,3 +1,6 @@
+# Model cache — downloaded at runtime, not version-controlled
+vectors/models/
+
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,java
 

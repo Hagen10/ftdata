@@ -11,9 +11,12 @@ RUN cp -r /opt/solr/server/solr/configsets/_default /opt/solr/server/solr/config
 # Overwrite ONLY schema
 COPY vectors/solr/config/managed-schema /opt/solr/server/solr/configsets/vector_config/conf/managed-schema
 
+# Ensure data dir is writable by solr (we are still root here)
+RUN mkdir -p /var/solr/data && chown -R solr:solr /var/solr
+
 # Copy init script
 COPY vectors/solr/entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 USER solr
 

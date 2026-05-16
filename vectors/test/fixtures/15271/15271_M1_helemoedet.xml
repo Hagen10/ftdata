@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dokument edixistatus="">
+  <MetaMeeting>
+    <ParliamentarySession>15271</ParliamentarySession>
+    <ParliamentaryGroup>Folketinget</ParliamentaryGroup>
+    <MeetingNumber>1</MeetingNumber>
+    <DateOfSitting>1527-10-03T10:00:00</DateOfSitting>
+    <Location>Folketingssalen</Location>
+  </MetaMeeting>
+
+  <DagsordenPunkt>
+    <MetaFTAgendaItem>
+      <ItemNo>1</ItemNo>
+    </MetaFTAgendaItem>
+
+    <!-- Anna Hansen (A) — grøn omstilling og miljø -->
+    <Tale>
+      <Taler>
+        <MetaSpeakerMP>
+          <OratorFirstName>Anna</OratorFirstName>
+          <OratorLastName>Hansen</OratorLastName>
+          <GroupNameShort>A</GroupNameShort>
+          <OratorRole>medlem</OratorRole>
+        </MetaSpeakerMP>
+      </Taler>
+      <TaleSegment>
+        <MetaSpeechSegment>
+          <StartDateTime>1527-10-03T10:01:00</StartDateTime>
+          <EndDateTime>1527-10-03T10:12:00</EndDateTime>
+        </MetaSpeechSegment>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Den grønne omstilling er ikke blot en miljøpolitisk nødvendighed — det er også en erhvervsmæssig mulighed. Danmark kan blive et grønt foregangsland og eksportere teknologi og løsninger til resten af verden inden for vedvarende energi og bæredygtigt byggeri.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Klimaaftalen fra Paris forpligter os til at handle ambitiøst. Vi har fremsat forslag om en klimalov, der sikrer bindende mål og årlig afrapportering til Folketinget. Miljøet kan ikke vente, og hvert år med forsinkelse gør opgaven sværere og dyrere.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Landbrugets udledning af drivhusgasser skal ned. Vi skal støtte landmændene i omstillingen til mere klimavenlig produktion og belønne dem, der investerer i grøn teknologi. Natur og landbrug skal gå hånd i hånd.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+      </TaleSegment>
+    </Tale>
+  </DagsordenPunkt>
+</Dokument>

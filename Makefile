@@ -13,3 +13,7 @@ stop:
 .PHONY: format
 format:
 	ktlint --format
+
+.PHONY: test-vector
+test-vector:
+	bash scripts/test-vector.sh

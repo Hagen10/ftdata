@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dokument edixistatus="">
+  <MetaMeeting>
+    <ParliamentarySession>15261</ParliamentarySession>
+    <ParliamentaryGroup>Folketinget</ParliamentaryGroup>
+    <MeetingNumber>1</MeetingNumber>
+    <DateOfSitting>1526-11-05T10:00:00</DateOfSitting>
+    <Location>Folketingssalen</Location>
+  </MetaMeeting>
+
+  <DagsordenPunkt>
+    <MetaFTAgendaItem>
+      <ItemNo>1</ItemNo>
+    </MetaFTAgendaItem>
+
+    <!-- Anna Hansen (A) — klima og miljø -->
+    <Tale>
+      <Taler>
+        <MetaSpeakerMP>
+          <OratorFirstName>Anna</OratorFirstName>
+          <OratorLastName>Hansen</OratorLastName>
+          <GroupNameShort>A</GroupNameShort>
+          <OratorRole>medlem</OratorRole>
+        </MetaSpeakerMP>
+      </Taler>
+      <TaleSegment>
+        <MetaSpeechSegment>
+          <StartDateTime>1526-11-05T10:01:00</StartDateTime>
+          <EndDateTime>1526-11-05T10:10:00</EndDateTime>
+        </MetaSpeechSegment>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Klimaforandringerne er en af de største udfordringer, vi står over for i dag. Miljøpolitikken skal styrkes markant, hvis vi skal nå de ambitiøse mål om at reducere CO2-udledningen med mindst 40 procent inden 2030.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Vi er nødt til at investere massivt i vedvarende energi som vindkraft og solenergi. Grøn omstilling af transportsektoren er afgørende, og vi skal fremme elbiler og bæredygtig kollektiv trafik.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Naturen og biodiversiteten lider under intensivt landbrug og forurening. Vi skal beskytte vores vandmiljø, reducere pesticidanvendelsen og sikre større naturområder til gavn for både dyr og mennesker.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+      </TaleSegment>
+    </Tale>
+
+    <!-- Bo Pedersen (V) — økonomi og skat -->
+    <Tale>
+      <Taler>
+        <MetaSpeakerMP>
+          <OratorFirstName>Bo</OratorFirstName>
+          <OratorLastName>Pedersen</OratorLastName>
+          <GroupNameShort>V</GroupNameShort>
+          <OratorRole>medlem</OratorRole>
+        </MetaSpeakerMP>
+      </Taler>
+      <TaleSegment>
+        <MetaSpeechSegment>
+          <StartDateTime>1526-11-05T10:11:00</StartDateTime>
+          <EndDateTime>1526-11-05T10:20:00</EndDateTime>
+        </MetaSpeechSegment>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Den danske økonomi er grundlæggende sund, men vi skal fortsat arbejde for at sikre vækst og beskæftigelse. Skattepolitikken spiller en central rolle i at tiltrække investeringer og fastholde virksomheder i Danmark.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Skattetrykket i Danmark er fortsat for højt sammenlignet med vores nabolande. Vi ønsker lavere indkomstskat og selskabsskat, så det kan betale sig at arbejde og investere. En konkurrencedygtig skattepolitik er forudsætningen for fremtidig velstand.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Statens udgifter skal styres ansvarligt. Vi skal prioritere kerneopgaverne og undgå unødvendige offentlige udgifter. Et sundt statsbudget med overskud er grundlaget for langsigtet velfærd og tryghed for borgerne.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+      </TaleSegment>
+    </Tale>
+  </DagsordenPunkt>
+
+  <DagsordenPunkt>
+    <MetaFTAgendaItem>
+      <ItemNo>2</ItemNo>
+    </MetaFTAgendaItem>
+
+    <!-- Anna Hansen (A) — sundhed og hospitalsvæsen -->
+    <Tale>
+      <Taler>
+        <MetaSpeakerMP>
+          <OratorFirstName>Anna</OratorFirstName>
+          <OratorLastName>Hansen</OratorLastName>
+          <GroupNameShort>A</GroupNameShort>
+          <OratorRole>medlem</OratorRole>
+        </MetaSpeakerMP>
+      </Taler>
+      <TaleSegment>
+        <MetaSpeechSegment>
+          <StartDateTime>1526-11-05T11:00:00</StartDateTime>
+          <EndDateTime>1526-11-05T11:08:00</EndDateTime>
+        </MetaSpeechSegment>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Sundhedsvæsenet er under pres. Ventelisterne på hospitalerne vokser, og personalet er presset. Vi er nødt til at investere mere i det offentlige sundhedsvæsen for at sikre alle borgere hurtig og kvalificeret behandling uanset bopæl og indkomst.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+        <TekstGruppe>
+          <Exitus>
+            <Linea>
+              <Char>Forebyggelse er mere effektivt end behandling. Vi skal styrke den kommunale forebyggelsesindsats, forbedre den mentale sundhed og sikre, at alle børn og unge har adgang til psykologhjælp. Uligheden i sundhed er fortsat for stor i Danmark.</Char>
+            </Linea>
+          </Exitus>
+        </TekstGruppe>
+      </TaleSegment>
+    </Tale>
+  </DagsordenPunkt>
+</Dokument>

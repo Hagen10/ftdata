@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-# Ensure Solr home exists
-mkdir -p /var/solr/data
-chown -R solr:solr /var/solr
-
 # Start Solr in background for setup
 solr start
 
