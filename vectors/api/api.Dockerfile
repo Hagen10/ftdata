@@ -6,7 +6,10 @@ WORKDIR /app
 RUN pip install --no-cache-dir \
       --extra-index-url https://download.pytorch.org/whl/cpu \
       torch && \
-    pip install --no-cache-dir fastapi uvicorn requests sentence-transformers
+    pip install --no-cache-dir \
+      fastapi uvicorn requests sentence-transformers \
+      diskcache \
+      "optimum[onnxruntime]>=1.20"
 
 # Cache both sentence-transformers and HuggingFace (NLI) models in the
 # bind-mounted /model-cache so they survive container/image rebuilds.
